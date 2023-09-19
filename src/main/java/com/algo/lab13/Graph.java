@@ -1,4 +1,4 @@
-
+package com.algo.lab13;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ public class Graph {
 	/* new public methods */
 	 
 	public Graph(Object[] inputEdges) {
-		HashMap<Vertex,Vertex> dupverts = new HashMap<Vertex,Vertex>();
+		HashMap<Vertex, Vertex> dupverts = new HashMap<Vertex, Vertex>();
 		
 		for(Object ob: inputEdges) {
 			if(ob.getClass() != Edge.class) continue;
@@ -51,7 +51,7 @@ public class Graph {
 		
 	}
 	public Graph(List<Pair> pairs){
-		HashMap<Vertex,Vertex> dupverts = new HashMap<Vertex,Vertex>();
+		HashMap<Vertex, Vertex> dupverts = new HashMap<Vertex, Vertex>();
 		HashMap<Edge,Edge> dupedges = new HashMap<Edge,Edge>();
 		for(Pair e : pairs){
 			//handle the vertices and edges simultaneously
@@ -108,21 +108,40 @@ public class Graph {
 	public List<Graph> getConnectedComponents() {
 		//if null, first compute
 		//then return connectedComponents
-		return null;
+		ConnectedComponentSearch search = new ConnectedComponentSearch(this);
+		connectedComoonents = search.getConnectedComponents();
+		return connectedComoonents;
 	}
 	
 	public boolean isConnected() {
 		//implement
-		return false;
+		this.getConnectedComponents();
+		return this.connectedComoonents.size() == 1;
 	}
 	
 	public boolean existsPathBetween(Vertex u, Vertex v) {
 		//implement
+		this.getConnectedComponents();
+
+		for (Graph g : connectedComoonents) {
+			if (g.vertices.contains(u) && g.vertices.contains(v)) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 	
 	public boolean containsCycle() {
 		//implement
+		this.getConnectedComponents();
+
+		for (Graph g : connectedComoonents) {
+			if (g.edges.size() !=  g.vertices.size() - 1) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 	
@@ -161,5 +180,15 @@ public class Graph {
 	private String reverse(String edge) {
 		String[] vals = edge.split("-");
 		return vals[1]+"-"+vals[0];
+	}
+
+	public boolean isBipartite() {
+		OddCycle oddCycle = new OddCycle(this);
+		this.isBipartite = !oddCycle.isGraphContainOddCycle();
+		return this.isBipartite;
+	}
+
+	public boolean isTree() {
+		return this.isConnected() && !this.containsCycle();
 	}
 }

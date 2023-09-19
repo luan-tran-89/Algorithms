@@ -1,4 +1,4 @@
-
+package com.algo.lab13.solution;
 
 public class Edge {
 	Vertex u;

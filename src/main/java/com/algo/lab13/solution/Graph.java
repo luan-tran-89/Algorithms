@@ -1,4 +1,4 @@
-
+package com.algo.lab13.solution;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ public class Graph {
 	/* new public methods */
 	 
 	public Graph(Object[] inputEdges) {
-		HashMap<Vertex,Vertex> dupverts = new HashMap<Vertex,Vertex>();
+		HashMap<Vertex, Vertex> dupverts = new HashMap<Vertex, Vertex>();
 		
 		for(Object ob: inputEdges) {
 			if(ob.getClass() != Edge.class) continue;
@@ -48,7 +48,7 @@ public class Graph {
 		}
 	}
 	public Graph(List<Pair> pairs){
-		HashMap<Vertex,Vertex> dupverts = new HashMap<Vertex,Vertex>();
+		HashMap<Vertex, Vertex> dupverts = new HashMap<Vertex, Vertex>();
 		HashMap<Edge,Edge> dupedges = new HashMap<Edge,Edge>();
 		for(Pair e : pairs){
 			//handle the vertices and edges simultaneously

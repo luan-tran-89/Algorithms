@@ -1,3 +1,5 @@
+package com.algo.lab13.solution;
+
 import java.util.ArrayList;
 import java.util.List;
 
