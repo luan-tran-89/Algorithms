@@ -51,30 +51,6 @@ public class Solution {
 
         // 5
         System.out.println(s.longestCommonSubsequence("abcba", "abcbcba"));
-
-        int n = 50;
-        // n * n
-        System.out.println(s.foo(n));
-//        System.out.println((int)Math.pow(2, n));
-//        System.out.println(s.log(n, 2));
-        System.out.println(Math.sqrt(n) * n);
-//        System.out.println(n * n);
-    }
-
-    public  double log(double number, double custom_base) {
-        // a is value and b is base
-        double result = (int) (Math.log(number) / Math.log(custom_base));
-        return result;
-    }
-
-    int foo(int n) {
-        int sum = 0;
-        int i = 1;
-        int j = n*n;
-        while(i++ < j --) {
-            sum++;
-        }
-        return sum;
     }
 
     public int longestCommonSubsequence(String text1, String text2) {
